@@ -3,7 +3,6 @@ import { TokenService } from '../service/token.service';
 import { AuthService } from '../service/auth.service';
 import { Router } from '@angular/router';
 import { LoginRequest } from '../model/login-request';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-login',
@@ -19,6 +18,7 @@ export class LoginComponent implements OnInit {
   username: string;
   password: string;
   private roles: string[] = [];
+  errormessage: string;
 
   constructor(
     private tokenService: TokenService,
@@ -49,8 +49,9 @@ export class LoginComponent implements OnInit {
       err => {
         this.isLogged = false;
         this.isLoginFail = true;
-        console.log(err);
-
+        // fix -> description empty on Exceptions (underfined)
+        this.errormessage = err.error.mesage;
+        console.log(err.error.mesage);
       }
     );
   }
