@@ -3,8 +3,8 @@
 </div>
 
 <ng-template #loggedOut>
-  <div class="d-flex justify-content-center">
-      <div class="card" style="width: 18rem;">
+  <div class="container d-flex justify-content-center">
+      <div class="card mt-4" style="width: 18rem;">
         <div class="card-header">
           <ul class="nav nav-tabs">
             <li class="nav-item">
@@ -16,7 +16,21 @@
           </ul>
         </div>
         <div class="card-body">
-
+            <form (ngSubmit)="onLogin()">
+                <div class="input-group input-group-sm mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Email</span>
+                  </div>
+                  <input [(ngModel)] ="username" name="username" type="email" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" required>
+                </div>
+                <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="inputGroup-sizing-sm">Contraseña</span>
+                    </div>
+                    <input [(ngModel)] ="password" name="password" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" required>
+                </div>
+                <button type="submit" class="btn btn-outline-primary btn-block">Iniciar Sesión</button>
+            </form>
         </div>
       </div>
   </div>

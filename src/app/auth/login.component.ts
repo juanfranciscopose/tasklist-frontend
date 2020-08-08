@@ -16,8 +16,8 @@ export class LoginComponent implements OnInit {
   isLogged = false;
   isLoginFail = false;
   private loginRequest: LoginRequest;
-  private username: string;
-  private password: string;
+  username: string;
+  password: string;
   private roles: string[] = [];
 
   constructor(
