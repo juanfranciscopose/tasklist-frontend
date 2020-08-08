@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { ResolveStart } from '@angular/router';
 
 // browser const => aplication session storage
 const TOKEN_KEY = 'AuthToken';

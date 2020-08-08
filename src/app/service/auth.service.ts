@@ -6,7 +6,7 @@ import { LoginRequest } from '../model/login-request';
 import { Credential } from '../model/credential';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
 
