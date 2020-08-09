@@ -1,9 +1,9 @@
 export class UserRequest {
-  private id: number;
-  private name: string;
-  private surname: string;
-  private email: string;
-  private password: string;
-  private telephone?: number;
-  private rols: string[];
+  id: number;
+  name: string;
+  surname: string;
+  email: string;
+  password: string;
+  telephone?: number;
+  rols: string[];
 }

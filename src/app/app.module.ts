@@ -7,18 +7,28 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NavComponent } from './nav/nav.component';
+import { NewUserComponent } from './auth/store-user-form/new-user.component';
+import { IndexComponent } from './index/index.component';
+import { LoginFormComponent } from './auth/login-form/login-form.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    NavComponent
+    NavComponent,
+    NewUserComponent,
+    IndexComponent,
+    LoginFormComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

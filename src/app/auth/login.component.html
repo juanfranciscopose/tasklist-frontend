@@ -1,40 +1,23 @@
-<div class="text-center" *ngIf="isLogged; else loggedOut">
-  <h2>sesion iniciada</h2>
-</div>
+<div class="container d-flex justify-content-center">
 
-<ng-template #loggedOut>
-    <div class="container d-flex justify-content-center">
-        <div class="card mt-4" style="width: 18rem;">
-          <div class="card-header">
-              <ul class="nav nav-tabs">
-                  <li class="nav-item">
-                      <a class="nav-link" routerLink="/login">Iniciar Sesión</a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" routerLink="/new-user">Registrarse</a>
-                  </li>
-              </ul>
-          </div>
-          <div class="card-body">
-              <form #f= "ngForm" (ngSubmit)="onLogin()">
-                  <div class="input-group input-group-sm mb-3">
-                      <div class="input-group-prepend">
-                          <span class="input-group-text" id="inputGroup-sizing-sm">Email</span>
-                      </div>
-                      <input [(ngModel)] ="username" name="username" type="email" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" required>
-                  </div>
-                  <div class="input-group input-group-sm mb-3">
-                      <div class="input-group-prepend">
-                          <span class="input-group-text" id="inputGroup-sizing-sm">Contraseña</span>
-                      </div>
-                      <input [(ngModel)] ="password" name="password" type="password" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" required>
-                  </div>
-                  <button type="submit" class="btn btn-outline-primary btn-block">Iniciar Sesión</button>
-              </form>
-              <div *ngIf="f.submitted && isLoginFail" class="alert alert-danger mt-3">
-                <h6>{{errormessage}}</h6>
-              </div>
-          </div>
-        </div>
+  <div class="card mt-4" style="width: 18rem;">
+
+    <div class="card-header">
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link" (click)="toggleLogin()">Iniciar Sesión</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="toggleUser()">Registrarse</a>
+        </li>
+      </ul>
     </div>
-</ng-template>
+
+    <div class="card-body">
+      <app-new-user *ngIf=this.visibleUser></app-new-user>
+      <app-login-form *ngIf=this.visibleLogin></app-login-form>
+    </div>
+
+  </div>
+
+</div>

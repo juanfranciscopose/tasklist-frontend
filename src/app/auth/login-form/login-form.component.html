@@ -1,0 +1,40 @@
+<form #f="ngForm" (ngSubmit)="onLogin()">
+  <div class="input-group input-group-sm mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="inputGroup-sizing-sm"
+        >Email</span
+      >
+    </div>
+    <input
+      [(ngModel)]="username"
+      name="username"
+      type="email"
+      class="form-control"
+      aria-label="Sizing example input"
+      aria-describedby="inputGroup-sizing-sm"
+      required
+    />
+  </div>
+  <div class="input-group input-group-sm mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="inputGroup-sizing-sm"
+        >Contraseña</span
+      >
+    </div>
+    <input
+      [(ngModel)]="password"
+      name="password"
+      type="password"
+      class="form-control"
+      aria-label="Sizing example input"
+      aria-describedby="inputGroup-sizing-sm"
+      required
+    />
+  </div>
+  <button type="submit" class="btn btn-outline-primary btn-block">
+    Iniciar Sesión
+  </button>
+</form>
+<div *ngIf="f.submitted && isLoginFail" class="alert alert-danger mt-3">
+  <h6>{{ errormessage }}</h6>
+</div>
