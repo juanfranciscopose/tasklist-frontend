@@ -28,11 +28,11 @@ export class NewUserComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.email = 't@t.t'; // undefined;
-    this.name = 'test'; // undefined;
-    this.surname = 'test'; // undefined;
-    this.password = 'test'; // undefined;
-    this.telephone = 1234; // undefined;
+    this.email = undefined;
+    this.name = undefined;
+    this.surname = undefined;
+    this.password = undefined;
+    this.telephone = undefined;
   }
   public storeUser(): void {
     // set userRequest

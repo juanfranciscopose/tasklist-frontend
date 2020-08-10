@@ -1,18 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { TokenService } from '../service/token.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
+  providers: [TokenService],
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent{
   constructor(
-   public tokenService: TokenService
+   public tokenService: TokenService,
+   private router: Router
   ) {}
   public onLogout(): void{
     this.tokenService.logOut();
-    window.location.reload();
+    this.router.navigateByUrl('/login');
   }
 
 }
