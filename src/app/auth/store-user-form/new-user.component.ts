@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/service/auth.service';
 import { UserRequest } from 'src/app/model/user-request';
-import { Router } from '@angular/router';
+import { UserService } from 'src/app/service/user.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-new-user',
   templateUrl: './new-user.component.html',
-  providers: [ToastrService, AuthService],
+  providers: [UserService, ToastrService],
   styleUrls: ['./new-user.component.css']
 })
 export class NewUserComponent implements OnInit {
@@ -23,8 +22,7 @@ export class NewUserComponent implements OnInit {
 
   constructor(
     private toastrService: ToastrService,
-    private authService: AuthService,
-    private router: Router
+    private userService: UserService
   ) { }
 
   ngOnInit(): void {
@@ -44,7 +42,7 @@ export class NewUserComponent implements OnInit {
       this.userRequest.telephone = this.telephone;
     }
     // new user
-    this.authService.storeUser(this.userRequest).subscribe(
+    this.userService.storeUser(this.userRequest).subscribe(
       (data) => {
         this.isStoreUserFail = false;
         this.email = undefined;
