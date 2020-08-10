@@ -13,7 +13,7 @@ import { LoginFormComponent } from './auth/login-form/login-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { JwtInterceptorService } from './interceptors/jwt-interceptor.service';
-import { TaskTableComponent } from './task-table/task-table/task-table.component';
+import { TaskTableComponent } from './task-table/task-table.component';
 
 @NgModule({
   declarations: [
