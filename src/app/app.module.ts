@@ -13,7 +13,9 @@ import { LoginFormComponent } from './auth/login-form/login-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { JwtInterceptorService } from './interceptors/jwt-interceptor.service';
-import { TaskTableComponent } from './task-table/task-table.component';
+import { TaskCrudComponent } from './task-crud/task-crud.component';
+import { TaskFormComponent } from './task-crud/task-form/task-form.component';
+import { TableComponent } from './task-crud/table/table.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { TaskTableComponent } from './task-table/task-table.component';
     NewUserComponent,
     IndexComponent,
     LoginFormComponent,
-    TaskTableComponent
+    TaskCrudComponent,
+    TaskFormComponent,
+    TableComponent
   ],
   imports: [
     BrowserModule,

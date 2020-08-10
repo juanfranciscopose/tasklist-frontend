@@ -23,4 +23,5 @@ export class UserService {
     const userId = this.tokenService.getUserId();
     return this.httpClient.get<TaskRequest[]>(this.urlUser + userId + '/tasks');
   }
+
 }

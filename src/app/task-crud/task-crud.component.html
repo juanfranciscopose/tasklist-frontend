@@ -1,0 +1,25 @@
+<div class="container mt-3">
+  <div class="container d-flex justify-content-center mb-4">
+    <h2>Mis Proyectos</h2>
+  </div>
+  <div class="row mt-3">
+    <div class="col-md-8 col-sm-12">
+
+        <app-task-table></app-task-table>
+
+    </div>
+    <div class="col-md-4 col-sm-12">
+        <div class="d-flex justify-content-center align-items-start">
+          <button class="btn btn-outline-primary" (click)="toggleTaskForm()">
+            Nuevo Proyecto
+          </button>
+      </div>
+        <div *ngIf="this.visibleTaskForm" class="mt-2">
+
+          <app-task-form></app-task-form>
+
+      </div>
+
+    </div>
+  </div>
+</div>
