@@ -42,6 +42,7 @@ export class LoginFormComponent implements OnInit {
         (data) => {
           this.isLogged = true;
           this.isLoginFail = false;
+          this.tokenService.setUserId(data.userId);
           this.tokenService.setToken(data.token);
           this.tokenService.setUsername(data.username);
           this.tokenService.setAuthorities(data.authorities);
