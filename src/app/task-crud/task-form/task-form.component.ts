@@ -14,7 +14,7 @@ export class TaskFormComponent implements OnInit {
   userId: number;
   title: string;
   description: string;
-  status = true;
+  status = false;
   isStoreTaskFail = false;
   errormessage: string;
   constructor(
@@ -38,7 +38,7 @@ export class TaskFormComponent implements OnInit {
       (data) => {
         this.title = undefined;
         this.description = undefined;
-        this.status = undefined;
+        this.status = false;
         this.isStoreTaskFail = false;
         window.location.reload();
       }

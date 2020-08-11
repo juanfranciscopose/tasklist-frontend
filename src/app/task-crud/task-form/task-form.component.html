@@ -1,10 +1,7 @@
 <form #f="ngForm" (ngSubmit)="storeTask()">
-
   <div class="input-group input-group-sm mb-3">
     <div class="input-group-prepend">
-      <span class="input-group-text" id="inputGroup-sizing-sm"
-        >Titulo</span
-      >
+      <span class="input-group-text" id="inputGroup-sizing-sm">Titulo </span>
     </div>
     <input
       [(ngModel)]="title"
@@ -20,8 +17,8 @@
   <div class="input-group input-group-sm mb-3">
     <div class="input-group-prepend">
       <span class="input-group-text" id="inputGroup-sizing-sm"
-        >Descripción</span
-      >
+        >Descripción
+      </span>
     </div>
     <input
       [(ngModel)]="description"
@@ -34,14 +31,27 @@
     />
   </div>
 
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <div class="input-group-text">
+        <input
+          [(ngModel)]="status"
+          name="status"
+          type="checkbox"
+          aria-label="Checkbox for following label"
+        />
+      </div>
+    </div>
+    <div class="ml-2">
+      <label for="checkbox">Publico?</label>
+    </div>
+  </div>
 
   <button type="submit" class="btn btn-outline-primary">
     <i class="fas fa-plus"></i> Registrar Proyecto
   </button>
-
 </form>
 
 <div *ngIf="f.submitted && isStoreTaskFail" class="alert alert-danger mt-3">
   <h6>{{ errormessage }}</h6>
 </div>
-

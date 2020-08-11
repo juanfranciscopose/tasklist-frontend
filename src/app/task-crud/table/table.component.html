@@ -3,14 +3,17 @@
     <tr>
       <th scope="col">Título</th>
       <th scope="col">Descripción</th>
-      <th scope="col">Estado</th>
+      <th scope="col">Publico?</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let task of tasks">
       <td>{{ task.title }}</td>
       <td>{{ task.description }}</td>
-      <td>{{ task.status }}</td>
+      <td *ngIf="task.status; else no">Si</td>
+      <ng-template #no>
+        <td>No</td>
+      </ng-template>
     </tr>
   </tbody>
 </table>
