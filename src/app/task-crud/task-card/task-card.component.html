@@ -1,0 +1,24 @@
+<div class="card-group">
+  <div *ngFor="let task of tasks"class="col-md-6 col-sm-12">
+
+      <a routerLink="['tasks', task.id]" style="text-decoration: none;">
+        <div class="card bg-light mb-3" style="max-width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">{{task.title | titlecase }}</h5>
+            <p class="card-text"></p>
+            <p *ngIf="task.description" class="card-text">Descripción: {{task.description}}</p>
+            <p *ngIf="task.status; else nostatus" class="card-text">Público: Si</p>
+            <ng-template #nostatus>
+              <p class="card-text">Público: No</p>
+            </ng-template>
+          </div>
+          <div class="card-footer text-muted">
+            Fecha de creación: {{task.timeStamp | date}}
+          </div>
+        </div>
+      </a>
+
+  </div>
+</div>
+
+

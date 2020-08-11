@@ -16,6 +16,8 @@ import { JwtInterceptorService } from './interceptors/jwt-interceptor.service';
 import { TaskCrudComponent } from './task-crud/task-crud.component';
 import { TaskFormComponent } from './task-crud/task-form/task-form.component';
 import { TableComponent } from './task-crud/table/table.component';
+import { TaskCardComponent } from './task-crud/task-card/task-card.component';
+import { OneTaskCardComponent } from './task-crud/one-task-card/one-task-card.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { TableComponent } from './task-crud/table/table.component';
     LoginFormComponent,
     TaskCrudComponent,
     TaskFormComponent,
-    TableComponent
+    TableComponent,
+    TaskCardComponent,
+    OneTaskCardComponent
   ],
   imports: [
     BrowserModule,
