@@ -26,8 +26,8 @@ export class LoginFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.username = undefined;
-    this.password = undefined;
+    this.username = 'juan.pose@gmail.com'; // = undefined;
+    this.password = 'asd'; // = undefined;
     // login successful before loading the page
     if (this.tokenService.getToken()) {
       this.isLogged = true;
@@ -47,7 +47,7 @@ export class LoginFormComponent implements OnInit {
           this.tokenService.setUsername(data.username);
           this.tokenService.setAuthorities(data.authorities);
           this.roles = data.authorities;
-          this.router.navigateByUrl('');
+          this.router.navigateByUrl('/public-tasks');
         },
         (err) => {
           this.isLogged = false;

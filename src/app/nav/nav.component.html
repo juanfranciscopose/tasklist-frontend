@@ -2,18 +2,13 @@
 
   <ng-container *ngIf="tokenService.getAuthorities().includes('ROL_ADMIN'); else user">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">Task-list</a>
+      <a class="navbar-brand" routerLink="/home">Task-list</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/">
-              <i class="fas fa-home"></i> Inicio
-            </a>
-          </li>
           <li class="nav-item">
             <a class="nav-link" href="#">
               <i class="far fa-trash-alt"></i> Borrar Usuario
@@ -33,7 +28,7 @@
 
 <ng-template #notlogged>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">Task-list</a>
+      <a class="navbar-brand" routerLink="/home">Task-list</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -41,8 +36,8 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" routerLink="/">
-              <i class="fas fa-home"></i> Inicio
+            <a class="nav-link" routerLink="/public-tasks">
+              <i class="fas fa-home"></i> Proyectos Públicos
             </a>
           </li>
           <li class="nav-item">
@@ -57,7 +52,7 @@
 
 <ng-template #user>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Task-list</a>
+    <a class="navbar-brand"routerLink="/home">Task-list</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -65,8 +60,8 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" routerLink="/">
-            <i class="fas fa-home"></i> Inicio
+          <a class="nav-link" routerLink="/public-tasks">
+            <i class="fas fa-home"></i> Proyectos Públicos
           </a>
         </li>
         <li class="nav-item">

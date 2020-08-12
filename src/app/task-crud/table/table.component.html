@@ -1,19 +1,88 @@
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th scope="col">Título</th>
-      <th scope="col">Descripción</th>
-      <th scope="col">Publico?</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let task of tasks">
-      <td>{{ task.title }}</td>
-      <td>{{ task.description }}</td>
-      <td *ngIf="task.status; else no">Si</td>
-      <ng-template #no>
-        <td>No</td>
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="container d-flex justify-content-center mb-4">
+        <h2>Proyectos Públicos</h2>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xl-12">
+      <ng-container *ngIf="tasks === null; else table">
+        <h4>No hay proyectos públicos</h4>
+      </ng-container>
+
+      <ng-template #table>
+        <table class="table table-hover text-center">
+          <thead>
+            <tr>
+              <th scope="col">Autor</th>
+              <th scope="col">Título</th>
+              <th scope="col">Descripción</th>
+              <th scope="col">Fecha Creación</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let task of tasks">
+              <td>
+                {{ task.author.name | titlecase }}
+                {{ task.author.surname | titlecase }}
+              </td>
+              <td>{{ task.title | titlecase }}</td>
+              <td>{{ task.description }}</td>
+              <td>{{ task.timeStamp | date }}</td>
+              <td>
+                <button
+                  class="btn btn-outline-primary btn-sm"
+                  (click)="seeToDoList(task.id)"
+                  data-toggle="modal"
+                  data-target="#toDoList"
+                >
+                  <i class="fas fa-glasses"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </ng-template>
-    </tr>
-  </tbody>
-</table>
+    </div>
+  </div>
+  <!-- Modal -->
+  <div
+    class="modal fade"
+    id="toDoList"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <ng-container *ngIf="toDoList === null; else list">
+            <h4>No hay especificaciones</h4>
+          </ng-container>
+
+          <ng-template #list>
+            <ul class="list-group" *ngFor="let toDo of toDoList">
+              <li class="list-group-item">
+                Fecha Cración: {{ toDo.timeStamp | date }}
+              </li>
+              <li class="list-group-item">Tarea: {{ toDo.description }}</li>
+              <li class="list-group-item">Finalizada?: {{ toDo.status }}</li>
+            </ul>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

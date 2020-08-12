@@ -8,7 +8,6 @@ import { LoginComponent } from './auth/login.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NavComponent } from './nav/nav.component';
 import { NewUserComponent } from './auth/store-user-form/new-user.component';
-import { IndexComponent } from './index/index.component';
 import { LoginFormComponent } from './auth/login-form/login-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
@@ -18,6 +17,7 @@ import { TaskFormComponent } from './task-crud/task-form/task-form.component';
 import { TableComponent } from './task-crud/table/table.component';
 import { TaskCardComponent } from './task-crud/task-card/task-card.component';
 import { OneTaskCardComponent } from './task-crud/one-task-card/one-task-card.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -25,13 +25,13 @@ import { OneTaskCardComponent } from './task-crud/one-task-card/one-task-card.co
     LoginComponent,
     NavComponent,
     NewUserComponent,
-    IndexComponent,
     LoginFormComponent,
     TaskCrudComponent,
     TaskFormComponent,
     TableComponent,
     TaskCardComponent,
-    OneTaskCardComponent
+    OneTaskCardComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,

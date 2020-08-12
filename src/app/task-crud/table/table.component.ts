@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../service/user.service';
 import { TaskRequest } from '../../model/task-request';
+import { TaskService } from 'src/app/service/task.service';
+import { ToDoRequest } from 'src/app/model/to-do-request';
 
 @Component({
   selector: 'app-task-table',
@@ -9,14 +10,22 @@ import { TaskRequest } from '../../model/task-request';
 })
 export class TableComponent implements OnInit {
   public tasks: TaskRequest[];
+  public toDoList: ToDoRequest[];
   constructor(
-    private userService: UserService
+    private taskService: TaskService
   ) { }
 
   ngOnInit(): void {
-    this.userService.getUserTask().subscribe(
+    this.taskService.getAllPublicTask().subscribe(
       (data) => {
         this.tasks = data;
+      }
+    );
+  }
+  public seeToDoList(id: number): void {
+    this.taskService.getAllTaskToDo(id).subscribe(
+      (data) => {
+        this.toDoList = data;
       }
     );
   }
