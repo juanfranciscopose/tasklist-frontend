@@ -72,6 +72,13 @@ export class OneTaskCardComponent implements OnInit {
     );
   }
 
+  public changeStatus(id: number): void {
+    this.toDoService.changeStatus(id).subscribe();
+    this.sleep(1000);
+    this.refreshToDoList(this.id);
+    this.toastrService.success('Tarea actualizada');
+  }
+
   public sleep(milliseconds): void{
     const date = Date.now();
     let currentDate = null;

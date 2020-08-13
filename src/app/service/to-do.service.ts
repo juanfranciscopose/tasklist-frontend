@@ -18,4 +18,8 @@ export class ToDoService {
   public deleteToDo(id: number): Observable<any> {
     return this.httpClient.delete<any>(this.url + id);
   }
+
+  public changeStatus(id: number): Observable<any> {
+    return this.httpClient.put<any>(this.url + 'status/' + id, null);
+  }
 }
