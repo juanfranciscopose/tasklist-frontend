@@ -28,7 +28,6 @@ export class OneTaskCardComponent implements OnInit {
     this.taskService.getTaskById(this.id).subscribe(
       (data) => {
         this.taskRequest = data;
-        console.log(data);
       },
       (err) => {
         console.log(err);
@@ -53,13 +52,24 @@ export class OneTaskCardComponent implements OnInit {
     this.toDoRequest.task = undefined;
 
     this.sleep(1000);
+    this.refreshToDoList(this.id);
+    this.toggleVisible();
+    this.toastrService.success('Tarea agregada');
+  }
+
+  public deleteToDo(id: number): void {
+    this.toDoService.deleteToDo(id).subscribe();
+    this.sleep(1000);
+    this.refreshToDoList(this.id);
+    this.toastrService.success('Tarea eliminada');
+  }
+
+  private refreshToDoList(id: number): void{
     this.taskService.getAllTaskToDo(this.id).subscribe(
       (data) => {
         this.taskRequest.toDo = data;
       }
     );
-    this.toggleVisible();
-    this.toastrService.success('Tarea agregada');
   }
 
   public sleep(milliseconds): void{

@@ -14,4 +14,8 @@ export class ToDoService {
   public storeToDo(toDoRequest: ToDoRequest): Observable<any> {
     return this.httpClient.post<any>(this.url , toDoRequest);
   }
+
+  public deleteToDo(id: number): Observable<any> {
+    return this.httpClient.delete<any>(this.url + id);
+  }
 }
