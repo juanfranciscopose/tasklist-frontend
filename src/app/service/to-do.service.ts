@@ -12,7 +12,7 @@ export class ToDoService {
   constructor(private httpClient: HttpClient) { }
 
   public storeToDo(toDoRequest: ToDoRequest): Observable<any> {
-    return this.httpClient.post<any>(this.url , toDoRequest);
+    return this.httpClient.post<any>(this.url, toDoRequest);
   }
 
   public deleteToDo(id: number): Observable<any> {
@@ -21,5 +21,9 @@ export class ToDoService {
 
   public changeStatus(id: number): Observable<any> {
     return this.httpClient.put<any>(this.url + 'status/' + id, null);
+  }
+
+  public editToDo(toDoRequest: ToDoRequest): Observable<any> {
+    return this.httpClient.put<any>(this.url, toDoRequest);
   }
 }

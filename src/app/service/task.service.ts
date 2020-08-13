@@ -26,4 +26,7 @@ export class TaskService {
   public getAllTaskToDo(id: number): Observable<ToDoRequest[]> {
     return this.httpClient.get<ToDoRequest[]>(this.url + id + '/todo');
   }
+  public editTask(taskRequest: TaskRequest): Observable<any> {
+    return this.httpClient.put<any>(this.url, taskRequest);
+  }
 }

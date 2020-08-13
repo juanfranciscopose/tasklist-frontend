@@ -5,6 +5,8 @@ import { TaskRequest } from 'src/app/model/task-request';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { ToDoRequest } from 'src/app/model/to-do-request';
 import { ToastrService } from 'ngx-toastr';
+import { UserRequest } from 'src/app/model/user-request';
+import { TokenService } from 'src/app/service/token.service';
 
 @Component({
   selector: 'app-one-task-card',
@@ -12,11 +14,14 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./one-task-card.component.css']
 })
 export class OneTaskCardComponent implements OnInit {
+  visibleEditfields = false;
   visibleToDo = false;
+  userRequest: UserRequest = new UserRequest();
   toDoRequest: ToDoRequest = new ToDoRequest();
   id: number;
   taskRequest: TaskRequest = new TaskRequest();
   constructor(
+    private tokenService: TokenService,
     private taskService: TaskService,
     private route: ActivatedRoute,
     private toDoService: ToDoService,
@@ -59,7 +64,7 @@ export class OneTaskCardComponent implements OnInit {
 
   public deleteToDo(id: number): void {
     this.toDoService.deleteToDo(id).subscribe();
-    this.sleep(1000);
+    this.sleep(2000);
     this.refreshToDoList(this.id);
     this.toastrService.success('Tarea eliminada');
   }
@@ -77,6 +82,18 @@ export class OneTaskCardComponent implements OnInit {
     this.sleep(1000);
     this.refreshToDoList(this.id);
     this.toastrService.success('Tarea actualizada');
+  }
+
+  public visibleEdit(): void {
+    this.visibleEditfields = !this.visibleEditfields;
+  }
+
+  public updateTask(): void {
+    this.userRequest.id = +this.tokenService.getUserId();
+    this.taskRequest.author = this.userRequest;
+    this.taskService.editTask(this.taskRequest).subscribe();
+    this.visibleEditfields = false;
+    this.toastrService.success('Proyecto actualizado');
   }
 
   public sleep(milliseconds): void{
