@@ -8,5 +8,5 @@ export class TaskRequest {
   timeStamp: Date;
   status: boolean;
   author: UserRequest;
-  toDoList: ToDoRequest[];
+  toDo: ToDoRequest[];
 }

@@ -1,3 +1,46 @@
-<div class="container">
-  {{taskRequest.title}}
+<div class="container d-flex justify-content-center mt-4">
+  <div class="card" style="width: 30rem;">
+    <div class="card-body">
+      <h5 class="card-title text-center"><i class="fas fa-pen-fancy"></i> {{ taskRequest.title | titlecase}}</h5>
+      <p class="card-text"><i class="far fa-file-alt"></i> Descripción</p>
+      <p class="card-text">{{ taskRequest.description }}</p>
+      <p class="card-text"><i class="fas fa-list"></i> Tareas</p>
+      <button class="btn btn-outline-primary btn-sm mb-3" (click)="toggleVisible()">Nueva Tarea</button>
+
+      <ng-container *ngIf="taskRequest.toDo === null; else table">
+        <p class="card-text">No hay tareas</p>
+      </ng-container>
+
+      <ng-template #table>
+        <table class="table table-sm">
+          <tbody>
+            <tr *ngFor="let toDo of taskRequest.toDo">
+              <th>{{ toDo.description}}</th>
+              <td>{{ toDo.status}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </ng-template>
+
+      <div *ngIf="this.visibleToDo">
+        <form (ngSubmit)="taskStore()">
+          <div class="input-group input-group-sm mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-sm">Descripción</span>
+            </div>
+            <input [(ngModel)]="toDoRequest.description" name="description" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+            <div class="ml-2">
+              <button type="submit" class="btn btn-outline-primary btn-sm">
+                <i class="fas fa-plus"></i>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+    </div>
+    <div class="card-footer text-muted">
+      <p>Fecha de creación: {{ taskRequest.timeStamp | date }}</p>
+    </div>
+  </div>
 </div>

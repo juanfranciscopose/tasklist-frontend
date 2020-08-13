@@ -16,6 +16,7 @@ export class TaskCardComponent implements OnInit {
   ngOnInit(): void {
     this.userService.getUserTask().subscribe(
       (data) => {
+        console.log(data);
         this.tasks = data;
       }
     );
