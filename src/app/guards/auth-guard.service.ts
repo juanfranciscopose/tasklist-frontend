@@ -6,13 +6,15 @@ import {
   RouterStateSnapshot,
   Router,
 } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGuardService implements CanActivate {
   realRol: string;
-  constructor(private router: Router, private tokenService: TokenService) {}
+  constructor(private router: Router, private tokenService: TokenService,private toastrService: ToastrService) {}
   // passes only if the required role matches the current one
   public canActivate(
     route: ActivatedRouteSnapshot,
@@ -32,7 +34,7 @@ export class AuthGuardService implements CanActivate {
       expectedRoles.indexOf(this.realRol) === -1 ||
       !this.tokenService.getToken()
     ) {
-      alert('usted no tiene permiso para ir a esa url');
+      this.toastrService.error('usted no tiene permiso para ir a esa url');
       this.router.navigateByUrl('home');
       return false;
     } else {
