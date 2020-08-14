@@ -1,40 +1,43 @@
-<form #f="ngForm" (ngSubmit)="onLogin()">
-  <div class="input-group input-group-sm mb-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="inputGroup-sizing-sm"
-        >Email</span
-      >
+<ng-container *ngIf="isLogged; else nologged">
+  <h5 class="text-center">Ya has iniciado sesión.</h5>
+</ng-container>
+<ng-template #nologged>
+  <form #f="ngForm" (ngSubmit)="onLogin()">
+    <div class="input-group input-group-sm mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroup-sizing-sm">Email</span>
+      </div>
+      <input
+        [(ngModel)]="username"
+        name="username"
+        type="email"
+        class="form-control"
+        aria-label="Sizing example input"
+        aria-describedby="inputGroup-sizing-sm"
+        required
+      />
     </div>
-    <input
-      [(ngModel)]="username"
-      name="username"
-      type="email"
-      class="form-control"
-      aria-label="Sizing example input"
-      aria-describedby="inputGroup-sizing-sm"
-      required
-    />
-  </div>
-  <div class="input-group input-group-sm mb-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="inputGroup-sizing-sm"
-        >Contraseña</span
-      >
+    <div class="input-group input-group-sm mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroup-sizing-sm"
+          >Contraseña</span
+        >
+      </div>
+      <input
+        [(ngModel)]="password"
+        name="password"
+        type="password"
+        class="form-control"
+        aria-label="Sizing example input"
+        aria-describedby="inputGroup-sizing-sm"
+        required
+      />
     </div>
-    <input
-      [(ngModel)]="password"
-      name="password"
-      type="password"
-      class="form-control"
-      aria-label="Sizing example input"
-      aria-describedby="inputGroup-sizing-sm"
-      required
-    />
+    <button type="submit" class="btn btn-outline-primary btn-block">
+      <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
+    </button>
+  </form>
+  <div *ngIf="f.submitted && isLoginFail" class="alert alert-danger mt-3">
+    <h6>{{ errormessage }}</h6>
   </div>
-  <button type="submit" class="btn btn-outline-primary btn-block">
-    <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
-  </button>
-</form>
-<div *ngIf="f.submitted && isLoginFail" class="alert alert-danger mt-3">
-  <h6>{{ errormessage }}</h6>
-</div>
+</ng-template>
