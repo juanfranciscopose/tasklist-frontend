@@ -1,8 +1,12 @@
 <nav class="navbar navbar-dark bg-dark">
   <ul class="navbar-nav">
     <li class="nav-item">
-      <a [ngClass]="{'active' : this.visibleEditfields}" class="nav-link" (click)="visibleEdit()">
-        Editar Proyecto
+      <a
+        [ngClass]="{ active: this.visibleEditfields }"
+        class="nav-link"
+        (click)="visibleEdit()"
+      >
+        <i class="far fa-edit"></i> Editar Proyecto
       </a>
     </li>
   </ul>
@@ -27,6 +31,35 @@
           <i class="fas fa-pen-fancy"></i> {{ taskRequest.title | titlecase }}
         </h5>
       </ng-template>
+
+      <ng-container *ngIf="visibleEditfields; else checkbox">
+        <div class="input-group mb-3">
+          <i class="fas fa-globe-americas"></i>
+          <div class="ml-2 input-group-prepend">
+            <div class="input-group-text">
+              <input
+                [(ngModel)]="this.taskRequest.status"
+                name="status"
+                type="checkbox"
+                aria-label="Checkbox for following label"
+              />
+            </div>
+          </div>
+          <div class="ml-2">
+            <label for="checkbox">Publico?</label>
+          </div>
+        </div>
+      </ng-container>
+      <ng-template #checkbox>
+        <ng-container *ngIf="this.taskRequest.status; else private">
+          <p class="card-text"><i class="fas fa-globe-americas"></i> Público</p>
+        </ng-container>
+
+        <ng-template #private>
+          <p class="card-text"><i class="fas fa-globe-americas"></i> Privado</p>
+        </ng-template>
+      </ng-template>
+
       <p class="card-text"><i class="far fa-file-alt"></i> Descripción</p>
       <ng-container *ngIf="visibleEditfields; else p">
         <input
@@ -41,7 +74,12 @@
       </ng-template>
 
       <ng-container *ngIf="visibleEditfields">
-        <button (click)="updateTask()" class="btn btn-outline-primary btn-sm mb-2">Guardar <i class="fas fa-plus"></i></button>
+        <button
+          (click)="updateTask()"
+          class="btn btn-outline-primary btn-sm mb-2"
+        >
+          Guardar <i class="fas fa-plus"></i>
+        </button>
       </ng-container>
 
       <p class="card-text"><i class="fas fa-list"></i> Tareas</p>
@@ -49,7 +87,7 @@
         class="btn btn-outline-primary btn-sm mb-3"
         (click)="toggleVisible()"
       >
-        Nueva Tarea
+        Nueva Tarea <i class="far fa-arrow-alt-circle-down"></i>
       </button>
 
       <ng-container *ngIf="taskRequest.toDo === null; else table">

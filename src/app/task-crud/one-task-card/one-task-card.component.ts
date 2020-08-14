@@ -11,7 +11,7 @@ import { TokenService } from 'src/app/service/token.service';
 @Component({
   selector: 'app-one-task-card',
   templateUrl: './one-task-card.component.html',
-  styleUrls: ['./one-task-card.component.css']
+  styleUrls: ['./one-task-card.component.css'],
 })
 export class OneTaskCardComponent implements OnInit {
   visibleEditfields = false;
@@ -26,7 +26,7 @@ export class OneTaskCardComponent implements OnInit {
     private route: ActivatedRoute,
     private toDoService: ToDoService,
     private toastrService: ToastrService
-    ) { }
+  ) {}
 
   ngOnInit(): void {
     this.id = +this.route.snapshot.paramMap.get('id');
@@ -69,12 +69,10 @@ export class OneTaskCardComponent implements OnInit {
     this.toastrService.success('Tarea eliminada');
   }
 
-  private refreshToDoList(id: number): void{
-    this.taskService.getAllTaskToDo(this.id).subscribe(
-      (data) => {
-        this.taskRequest.toDo = data;
-      }
-    );
+  private refreshToDoList(id: number): void {
+    this.taskService.getAllTaskToDo(this.id).subscribe((data) => {
+      this.taskRequest.toDo = data;
+    });
   }
 
   public changeStatus(id: number): void {
@@ -96,7 +94,7 @@ export class OneTaskCardComponent implements OnInit {
     this.toastrService.success('Proyecto actualizado');
   }
 
-  public sleep(milliseconds): void{
+  public sleep(milliseconds): void {
     const date = Date.now();
     let currentDate = null;
     do {

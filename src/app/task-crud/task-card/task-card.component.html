@@ -15,15 +15,17 @@
             <p *ngIf="task.description" class="card-text">
               Descripción: {{ task.description }}
             </p>
-            <p *ngIf="task.status; else nostatus" class="card-text">
-              Público: Si
-            </p>
-            <ng-template #nostatus>
-              <p class="card-text">Público: No</p>
-            </ng-template>
           </div>
           <div class="card-footer text-muted">
-            Fecha de creación: {{ task.timeStamp | date }}
+            <p *ngIf="task.status; else privado" class="card-text">
+              Estado Público
+            </p>
+            <ng-template #privado>
+              <p class="card-text">Estado Privado</p>
+            </ng-template>
+            <p class="card-text">
+              Fecha de Creación: {{ task.timeStamp | date }}
+            </p>
           </div>
         </div>
       </a>
