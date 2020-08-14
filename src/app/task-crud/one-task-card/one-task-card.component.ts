@@ -14,6 +14,7 @@ import { TokenService } from 'src/app/service/token.service';
   styleUrls: ['./one-task-card.component.css'],
 })
 export class OneTaskCardComponent implements OnInit {
+  authorIsCurrentUser = false;
   visibleEditfields = false;
   visibleToDo = false;
   userRequest: UserRequest = new UserRequest();
@@ -34,6 +35,9 @@ export class OneTaskCardComponent implements OnInit {
     this.taskService.getTaskById(this.id).subscribe(
       (data) => {
         this.taskRequest = data;
+        if (this.taskRequest.author.id === +this.tokenService.getUserId()) {
+          this.authorIsCurrentUser = true;
+        }
       },
       (err) => {
         console.log(err);

@@ -1,175 +1,185 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <button
-    class="navbar-toggler"
-    type="button"
-    data-toggle="collapse"
-    data-target="#SecondNavbar"
-    aria-controls="SecondNavbar"
-    aria-expanded="false"
-    aria-label="Toggle navigation"
-  >
-    <span class="navbar-toggler-icon"></span>
-  </button>
+<h4 class="text-center" *ngIf="!this.authorIsCurrentUser; else card">
+  No tienes acceso a este proyecto
+</h4>
+<ng-template #card>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#SecondNavbar"
+      aria-controls="SecondNavbar"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-  <div class="collapse navbar-collapse" id="SecondNavbar">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a
-          [ngClass]="{ active: this.visibleEditfields }"
-          class="nav-link"
-          (click)="visibleEdit()"
-        >
-          <i class="far fa-edit"></i> Editar Proyecto
-        </a>
-      </li>
-      <li class="nav-item">
-        <a
-          class="nav-link"
-          (click)="delete()"
-        >
-          <i class="far fa-trash-alt"></i> Borrar Proyecto
-        </a>
-      </li>
-    </ul>
-  </div>
-</nav>
+    <div class="collapse navbar-collapse" id="SecondNavbar">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a
+            [ngClass]="{ active: this.visibleEditfields }"
+            class="nav-link"
+            (click)="visibleEdit()"
+          >
+            <i class="far fa-edit"></i> Editar Proyecto
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="delete()">
+            <i class="far fa-trash-alt"></i> Borrar Proyecto
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
 
-<div class="container d-flex justify-content-center mt-4">
-  <div class="card" style="width: 50rem;">
-    <div class="card-body">
-      <ng-container *ngIf="visibleEditfields; else h5">
-        <div class="text-center">
-          <i class="fas fa-pen-fancy"></i
-          ><input
-            [(ngModel)]="taskRequest.title"
-            name="title"
-            type="text"
-            class="mb-2"
-          />
-        </div>
-      </ng-container>
-      <ng-template #h5>
-        <h5 class="card-title text-center">
-          <i class="fas fa-pen-fancy"></i> {{ taskRequest.title | titlecase }}
-        </h5>
-      </ng-template>
+  <div class="container d-flex justify-content-center mt-4">
+    <div class="card" style="width: 50rem;">
+      <div class="card-body">
+        <ng-container *ngIf="visibleEditfields; else h5">
+          <div class="text-center">
+            <i class="fas fa-pen-fancy"></i
+            ><input
+              [(ngModel)]="taskRequest.title"
+              name="title"
+              type="text"
+              class="mb-2"
+            />
+          </div>
+        </ng-container>
+        <ng-template #h5>
+          <h5 class="card-title text-center">
+            <i class="fas fa-pen-fancy"></i> {{ taskRequest.title | titlecase }}
+          </h5>
+        </ng-template>
 
-      <ng-container *ngIf="visibleEditfields; else checkbox">
-        <div class="input-group mb-3">
-          <i class="fas fa-globe-americas"></i>
-          <div class="ml-2 input-group-prepend">
-            <div class="input-group-text">
-              <input
-                [(ngModel)]="this.taskRequest.status"
-                name="status"
-                type="checkbox"
-                aria-label="Checkbox for following label"
-              />
+        <ng-container *ngIf="visibleEditfields; else checkbox">
+          <div class="input-group mb-3">
+            <i class="fas fa-globe-americas"></i>
+            <div class="ml-2 input-group-prepend">
+              <div class="input-group-text">
+                <input
+                  [(ngModel)]="this.taskRequest.status"
+                  name="status"
+                  type="checkbox"
+                  aria-label="Checkbox for following label"
+                />
+              </div>
+            </div>
+            <div class="ml-2">
+              <label for="checkbox">Publico?</label>
             </div>
           </div>
-          <div class="ml-2">
-            <label for="checkbox">Publico?</label>
-          </div>
-        </div>
-      </ng-container>
-      <ng-template #checkbox>
-        <ng-container *ngIf="this.taskRequest.status; else private">
-          <p class="card-text"><i class="fas fa-globe-americas"></i> Público</p>
+        </ng-container>
+        <ng-template #checkbox>
+          <ng-container *ngIf="this.taskRequest.status; else private">
+            <p class="card-text">
+              <i class="fas fa-globe-americas"></i> Público
+            </p>
+          </ng-container>
+
+          <ng-template #private>
+            <p class="card-text">
+              <i class="fas fa-globe-americas"></i> Privado
+            </p>
+          </ng-template>
+        </ng-template>
+
+        <p class="card-text">
+          <i class="far fa-file-alt"></i> <strong> Descripción</strong>
+        </p>
+        <ng-container *ngIf="visibleEditfields; else p">
+          <input
+            [(ngModel)]="taskRequest.description"
+            name="description"
+            type="text"
+            class="form-control mb-2"
+          />
+        </ng-container>
+        <ng-template #p>
+          <p class="card-text">{{ taskRequest.description }}</p>
+        </ng-template>
+
+        <ng-container *ngIf="visibleEditfields">
+          <button
+            (click)="updateTask()"
+            class="btn btn-outline-primary btn-sm mb-2"
+          >
+            Guardar <i class="fas fa-plus"></i>
+          </button>
         </ng-container>
 
-        <ng-template #private>
-          <p class="card-text"><i class="fas fa-globe-americas"></i> Privado</p>
-        </ng-template>
-      </ng-template>
-
-      <p class="card-text"><i class="far fa-file-alt"></i> <strong> Descripción</strong></p>
-      <ng-container *ngIf="visibleEditfields; else p">
-        <input
-          [(ngModel)]="taskRequest.description"
-          name="description"
-          type="text"
-          class="form-control mb-2"
-        />
-      </ng-container>
-      <ng-template #p>
-        <p class="card-text">{{ taskRequest.description }}</p>
-      </ng-template>
-
-      <ng-container *ngIf="visibleEditfields">
+        <p class="card-text">
+          <i class="fas fa-list"></i> <strong> Tareas</strong>
+        </p>
         <button
-          (click)="updateTask()"
-          class="btn btn-outline-primary btn-sm mb-2"
+          class="btn btn-outline-primary btn-sm mb-3"
+          (click)="toggleVisible()"
         >
-          Guardar <i class="fas fa-plus"></i>
+          Nueva Tarea <i class="far fa-arrow-alt-circle-down"></i>
         </button>
-      </ng-container>
 
-      <p class="card-text"><i class="fas fa-list"></i> <strong> Tareas</strong></p>
-      <button
-        class="btn btn-outline-primary btn-sm mb-3"
-        (click)="toggleVisible()"
-      >
-        Nueva Tarea <i class="far fa-arrow-alt-circle-down"></i>
-      </button>
+        <ng-container *ngIf="taskRequest.toDo === null; else table">
+          <p class="card-text">No hay tareas</p>
+        </ng-container>
 
-      <ng-container *ngIf="taskRequest.toDo === null; else table">
-        <p class="card-text">No hay tareas</p>
-      </ng-container>
-
-      <ng-template #table>
-        <table class="table table-sm">
-          <tbody>
-            <tr *ngFor="let toDo of taskRequest.toDo">
-              <td *ngIf="toDo.status; else item">
-                <a class="text-success" (click)="changeStatus(toDo.id)"
-                  ><i class="far fa-check-circle"></i
-                ></a>
-              </td>
-              <ng-template #item>
-                <td>
-                  <a (click)="changeStatus(toDo.id)"
-                    ><i class="far fa-circle"></i>
-                  </a>
+        <ng-template #table>
+          <table class="table table-sm">
+            <tbody>
+              <tr *ngFor="let toDo of taskRequest.toDo">
+                <td *ngIf="toDo.status; else item">
+                  <a class="text-success" (click)="changeStatus(toDo.id)"
+                    ><i class="far fa-check-circle"></i
+                  ></a>
                 </td>
-              </ng-template>
-              <td>{{ toDo.description }}</td>
-              <td>
-                <a class="text-danger" (click)="deleteToDo(toDo.id)"
-                  ><i class="far fa-trash-alt"></i
-                ></a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </ng-template>
+                <ng-template #item>
+                  <td>
+                    <a (click)="changeStatus(toDo.id)"
+                      ><i class="far fa-circle"></i>
+                    </a>
+                  </td>
+                </ng-template>
+                <td>{{ toDo.description }}</td>
+                <td>
+                  <a class="text-danger" (click)="deleteToDo(toDo.id)"
+                    ><i class="far fa-trash-alt"></i
+                  ></a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </ng-template>
 
-      <div *ngIf="this.visibleToDo">
-        <form (ngSubmit)="taskStore()">
-          <div class="input-group input-group-sm mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text" id="inputGroup-sizing-sm"
-                >Descripción</span
-              >
+        <div *ngIf="this.visibleToDo">
+          <form (ngSubmit)="taskStore()">
+            <div class="input-group input-group-sm mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-sm"
+                  >Descripción</span
+                >
+              </div>
+              <input
+                [(ngModel)]="toDoRequest.description"
+                name="description"
+                type="text"
+                class="form-control"
+                aria-label="Small"
+                aria-describedby="inputGroup-sizing-sm"
+              />
+              <div class="ml-2">
+                <button type="submit" class="btn btn-outline-primary btn-sm">
+                  <i class="fas fa-plus"></i>
+                </button>
+              </div>
             </div>
-            <input
-              [(ngModel)]="toDoRequest.description"
-              name="description"
-              type="text"
-              class="form-control"
-              aria-label="Small"
-              aria-describedby="inputGroup-sizing-sm"
-            />
-            <div class="ml-2">
-              <button type="submit" class="btn btn-outline-primary btn-sm">
-                <i class="fas fa-plus"></i>
-              </button>
-            </div>
-          </div>
-        </form>
+          </form>
+        </div>
+      </div>
+      <div class="card-footer text-muted">
+        <p>Fecha de creación: {{ taskRequest.timeStamp | date }}</p>
       </div>
     </div>
-    <div class="card-footer text-muted">
-      <p>Fecha de creación: {{ taskRequest.timeStamp | date }}</p>
-    </div>
   </div>
-</div>
+</ng-template>
