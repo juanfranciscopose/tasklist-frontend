@@ -1,4 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <h5 class="text-white">Mis Proyectos</h5>
   <button
     class="navbar-toggler"
     type="button"
@@ -19,7 +20,7 @@
           class="nav-link"
           (click)="toggleTaskForm()"
         >
-          Nuevo Proyecto <i class="far fa-arrow-alt-circle-down"></i>
+        <i class="far fa-arrow-alt-circle-down"></i> Nuevo Proyecto
         </a>
       </li>
     </ul>
@@ -35,12 +36,6 @@
   </div>
 
   <div class="row mt-3 mb-3">
-    <div class="col-sm-12 d-flex justify-content-center">
-      <h2>Mis Proyectos</h2>
-    </div>
-  </div>
-
-  <div class="row mt-3">
       <app-task-card></app-task-card>
   </div>
 
