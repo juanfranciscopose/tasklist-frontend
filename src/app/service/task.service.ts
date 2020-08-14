@@ -29,4 +29,8 @@ export class TaskService {
   public editTask(taskRequest: TaskRequest): Observable<any> {
     return this.httpClient.put<any>(this.url, taskRequest);
   }
+
+  public deleteTask(id: number): Observable<any> {
+    return this.httpClient.delete<any>(this.url + id);
+  }
 }

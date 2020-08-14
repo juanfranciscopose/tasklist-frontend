@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TaskService } from 'src/app/service/task.service';
 import { ToDoService } from 'src/app/service/to-do.service';
 import { TaskRequest } from 'src/app/model/task-request';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { ToDoRequest } from 'src/app/model/to-do-request';
 import { ToastrService } from 'ngx-toastr';
 import { UserRequest } from 'src/app/model/user-request';
@@ -21,6 +21,7 @@ export class OneTaskCardComponent implements OnInit {
   id: number;
   taskRequest: TaskRequest = new TaskRequest();
   constructor(
+    private routeRedirect: Router,
     private tokenService: TokenService,
     private taskService: TaskService,
     private route: ActivatedRoute,
@@ -92,6 +93,13 @@ export class OneTaskCardComponent implements OnInit {
     this.taskService.editTask(this.taskRequest).subscribe();
     this.visibleEditfields = false;
     this.toastrService.success('Proyecto actualizado');
+  }
+
+  public delete(): void {
+    this.taskService.deleteTask(this.id).subscribe();
+    this.sleep(2000);
+    this.routeRedirect.navigateByUrl('/tasks');
+    this.toastrService.success('Proyecto Eliminado');
   }
 
   public sleep(milliseconds): void {
