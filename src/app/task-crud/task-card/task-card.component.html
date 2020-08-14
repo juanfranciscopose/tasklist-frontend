@@ -4,31 +4,31 @@
   </h4>
 </ng-container>
 
-<ng-template #cards>
-  <div class="card-group">
-    <div *ngFor="let task of tasks" class="col-md-6 col-sm-12">
-      <a [routerLink]="['/tasks/', task.id]" style="text-decoration: none;">
-        <div class="card bg-light mb-3" style="max-width: 18rem;">
-          <div class="card-body">
-            <h5 class="card-title text-center">{{ task.title | titlecase }}</h5>
-            <p class="card-text"></p>
-            <p *ngIf="task.description" class="card-text">
-              Descripción: {{ task.description }}
-            </p>
+  <ng-template #cards>
+    <div class="card-group">
+      <div *ngFor="let task of tasks">
+        <a [routerLink]="['/tasks/', task.id]" style="text-decoration: none;">
+          <div class="card bg-light mb-3 mr-2" style="max-width: 16rem;">
+            <div class="card-body">
+              <h5 class="card-title text-center">{{ task.title | titlecase }}</h5>
+              <p *ngIf="task.description" class="card-text">
+                Descripción: {{ task.description }}
+              </p>
+            </div>
+            <div class="card-footer text-muted">
+              <p *ngIf="task.status; else privado" class="card-text">
+                Estado Público
+              </p>
+              <ng-template #privado>
+                <p class="card-text">Estado Privado</p>
+              </ng-template>
+              <p class="card-text">
+                Fecha de Creación: {{ task.timeStamp | date }}
+              </p>
+            </div>
           </div>
-          <div class="card-footer text-muted">
-            <p *ngIf="task.status; else privado" class="card-text">
-              Estado Público
-            </p>
-            <ng-template #privado>
-              <p class="card-text">Estado Privado</p>
-            </ng-template>
-            <p class="card-text">
-              Fecha de Creación: {{ task.timeStamp | date }}
-            </p>
-          </div>
-        </div>
-      </a>
+        </a>
+      </div>
     </div>
-  </div>
-</ng-template>
+  </ng-template>
+

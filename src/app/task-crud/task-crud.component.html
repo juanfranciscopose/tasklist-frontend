@@ -1,29 +1,47 @@
-<div class="container mt-3">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#SecondNavbar"
+    aria-controls="SecondNavbar"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-  <div class="container d-flex justify-content-start mb-4">
-    <h2>Mis Proyectos</h2>
+  <div class="collapse navbar-collapse" id="SecondNavbar">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a
+          [ngClass]="{ active: this.visibleTaskForm }"
+          class="nav-link"
+          (click)="toggleTaskForm()"
+        >
+          Nuevo Proyecto <i class="far fa-arrow-alt-circle-down"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+
+  <div class="row mt-3">
+    <div class="col-sm-12">
+      <app-task-form *ngIf="this.visibleTaskForm"></app-task-form>
+    </div>
+  </div>
+
+  <div class="row mt-3 mb-3">
+    <div class="col-sm-12 d-flex justify-content-center">
+      <h2>Mis Proyectos</h2>
+    </div>
   </div>
 
   <div class="row mt-3">
-
-    <div class="col-md-8 col-sm-12">
-
-        <app-task-card></app-task-card>
-
-    </div>
-    <div class="col-md-4 col-sm-12">
-        <div class="d-flex justify-content-center align-items-start">
-          <button class="btn btn-outline-primary" (click)="toggleTaskForm()">
-            Nuevo Proyecto <i class="far fa-arrow-alt-circle-down"></i>
-          </button>
-        </div>
-        <div *ngIf="this.visibleTaskForm" class="mt-2">
-
-          <app-task-form></app-task-form>
-
-        </div>
-    </div>
-
+      <app-task-card></app-task-card>
   </div>
 
 </div>
