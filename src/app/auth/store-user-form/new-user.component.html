@@ -1,10 +1,7 @@
 <form #f="ngForm" (ngSubmit)="storeUser()">
-
   <div class="input-group input-group-sm mb-3">
     <div class="input-group-prepend">
-      <span class="input-group-text" id="inputGroup-sizing-sm"
-        >Nombre</span
-      >
+      <span class="input-group-text" id="inputGroup-sizing-sm">Nombre</span>
     </div>
     <input
       [(ngModel)]="name"
@@ -19,9 +16,7 @@
 
   <div class="input-group input-group-sm mb-3">
     <div class="input-group-prepend">
-      <span class="input-group-text" id="inputGroup-sizing-sm"
-        >Apellido</span
-      >
+      <span class="input-group-text" id="inputGroup-sizing-sm">Apellido</span>
     </div>
     <input
       [(ngModel)]="surname"
@@ -36,9 +31,7 @@
 
   <div class="input-group input-group-sm mb-3">
     <div class="input-group-prepend">
-      <span class="input-group-text" id="inputGroup-sizing-sm"
-        >Email</span
-      >
+      <span class="input-group-text" id="inputGroup-sizing-sm">Email</span>
     </div>
     <input
       [(ngModel)]="email"
@@ -53,9 +46,7 @@
 
   <div class="input-group input-group-sm mb-3">
     <div class="input-group-prepend">
-      <span class="input-group-text" id="inputGroup-sizing-sm"
-        >Contraseña</span
-      >
+      <span class="input-group-text" id="inputGroup-sizing-sm">Contraseña</span>
     </div>
     <input
       [(ngModel)]="password"
@@ -71,8 +62,23 @@
   <div class="input-group input-group-sm mb-3">
     <div class="input-group-prepend">
       <span class="input-group-text" id="inputGroup-sizing-sm"
-        >Télefono</span
+        >Repita Contraseña</span
       >
+    </div>
+    <input
+      [(ngModel)]="passwordRepeat"
+      name="passwordRepeat"
+      type="password"
+      class="form-control"
+      aria-label="Sizing example input"
+      aria-describedby="inputGroup-sizing-sm"
+      required
+    />
+  </div>
+
+  <div class="input-group input-group-sm mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="inputGroup-sizing-sm">Télefono</span>
     </div>
     <input
       [(ngModel)]="telephone"
@@ -87,7 +93,6 @@
   <button type="submit" class="btn btn-outline-primary btn-block">
     <i class="fas fa-user-plus"></i> Registrarse
   </button>
-
 </form>
 
 <div *ngIf="f.submitted && isStoreUserFail" class="alert alert-danger mt-3">

@@ -29,7 +29,7 @@
                 {{ task.author.surname | titlecase }}
               </td>
               <td>{{ task.title | titlecase }}</td>
-              <td>{{ task.description }}</td>
+              <td class="text-left">{{ task.description }}</td>
               <td>{{ task.timeStamp | date }}</td>
               <td>
                 <button
@@ -83,7 +83,7 @@
                   <ng-template #item>
                     <td><i class="far fa-circle"></i></td>
                   </ng-template>
-                  <th>{{ toDo.description }}</th>
+                  <td class="text-left">{{ toDo.description }}</td>
                 </tr>
               </tbody>
             </table>

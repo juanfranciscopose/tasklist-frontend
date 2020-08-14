@@ -26,8 +26,8 @@ export class LoginFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.username = 'juan.pose@gmail.com'; // = undefined;
-    this.password = 'asd'; // = undefined;
+    this.username = undefined;
+    this.password = undefined;
     // login successful before loading the page
     if (this.tokenService.getToken()) {
       this.isLogged = true;

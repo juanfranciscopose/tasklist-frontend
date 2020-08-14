@@ -82,7 +82,7 @@
         </ng-template>
       </ng-template>
 
-      <p class="card-text"><i class="far fa-file-alt"></i> Descripción</p>
+      <p class="card-text"><i class="far fa-file-alt"></i> <strong> Descripción</strong></p>
       <ng-container *ngIf="visibleEditfields; else p">
         <input
           [(ngModel)]="taskRequest.description"
@@ -104,7 +104,7 @@
         </button>
       </ng-container>
 
-      <p class="card-text"><i class="fas fa-list"></i> Tareas</p>
+      <p class="card-text"><i class="fas fa-list"></i> <strong> Tareas</strong></p>
       <button
         class="btn btn-outline-primary btn-sm mb-3"
         (click)="toggleVisible()"
@@ -132,7 +132,7 @@
                   </a>
                 </td>
               </ng-template>
-              <th>{{ toDo.description }}</th>
+              <td>{{ toDo.description }}</td>
               <td>
                 <a class="text-danger" (click)="deleteToDo(toDo.id)"
                   ><i class="far fa-trash-alt"></i
