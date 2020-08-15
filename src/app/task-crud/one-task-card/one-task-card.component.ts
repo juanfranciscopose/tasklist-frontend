@@ -55,23 +55,26 @@ export class OneTaskCardComponent implements OnInit {
     this.toDoRequest.task = task;
     this.toDoRequest.timeStamp = new Date();
 
-    this.toDoService.storeToDo(this.toDoRequest).subscribe();
+    this.toDoService.storeToDo(this.toDoRequest).subscribe(
+      (data) => {
+        this.toDoRequest.description = undefined;
+        this.toDoRequest.timeStamp = undefined;
+        this.toDoRequest.task = undefined;
 
-    this.toDoRequest.description = undefined;
-    this.toDoRequest.timeStamp = undefined;
-    this.toDoRequest.task = undefined;
-
-    this.sleep(1000);
-    this.refreshToDoList(this.id);
-    this.toggleVisible();
-    this.toastrService.success('Tarea agregada');
+        this.refreshToDoList(this.id);
+        this.toggleVisible();
+        this.toastrService.success('Tarea agregada');
+      }
+    );
   }
 
   public deleteToDo(id: number): void {
-    this.toDoService.deleteToDo(id).subscribe();
-    this.sleep(2000);
-    this.refreshToDoList(this.id);
-    this.toastrService.success('Tarea eliminada');
+    this.toDoService.deleteToDo(id).subscribe(
+      (data) => {
+        this.refreshToDoList(this.id);
+        this.toastrService.success('Tarea eliminada');
+      }
+    );
   }
 
   private refreshToDoList(id: number): void {
@@ -81,10 +84,12 @@ export class OneTaskCardComponent implements OnInit {
   }
 
   public changeStatus(id: number): void {
-    this.toDoService.changeStatus(id).subscribe();
-    this.sleep(1000);
-    this.refreshToDoList(this.id);
-    this.toastrService.success('Tarea actualizada');
+    this.toDoService.changeStatus(id).subscribe(
+      (data) => {
+        this.refreshToDoList(this.id);
+        this.toastrService.success('Tarea actualizada');
+      }
+    );
   }
 
   public visibleEdit(): void {
@@ -94,23 +99,20 @@ export class OneTaskCardComponent implements OnInit {
   public updateTask(): void {
     this.userRequest.id = +this.tokenService.getUserId();
     this.taskRequest.author = this.userRequest;
-    this.taskService.editTask(this.taskRequest).subscribe();
-    this.visibleEditfields = false;
-    this.toastrService.success('Proyecto actualizado');
+    this.taskService.editTask(this.taskRequest).subscribe(
+      (data) => {
+        this.visibleEditfields = false;
+        this.toastrService.success('Proyecto actualizado');
+      }
+    );
   }
 
   public delete(): void {
-    this.taskService.deleteTask(this.id).subscribe();
-    this.sleep(2000);
-    this.routeRedirect.navigateByUrl('/tasks');
-    this.toastrService.success('Proyecto Eliminado');
-  }
-
-  public sleep(milliseconds): void {
-    const date = Date.now();
-    let currentDate = null;
-    do {
-      currentDate = Date.now();
-    } while (currentDate - date < milliseconds);
+    this.taskService.deleteTask(this.id).subscribe(
+      (data) => {
+        this.routeRedirect.navigateByUrl('/tasks');
+        this.toastrService.success('Proyecto Eliminado');
+      }
+    );
   }
 }
