@@ -49,7 +49,7 @@ export class OneTaskCardComponent implements OnInit {
     this.visibleToDo = !this.visibleToDo;
   }
 
-  public taskStore(): void {
+  public toDoStore(): void {
     const task: TaskRequest = new TaskRequest();
     task.id = this.id;
     this.toDoRequest.task = task;
@@ -64,6 +64,10 @@ export class OneTaskCardComponent implements OnInit {
         this.refreshToDoList(this.id);
         this.toggleVisible();
         this.toastrService.success('Tarea agregada');
+      },
+      (err) => {
+        console.log(err);
+        this.toastrService.error(err.error.message);
       }
     );
   }
@@ -103,6 +107,9 @@ export class OneTaskCardComponent implements OnInit {
       (data) => {
         this.visibleEditfields = false;
         this.toastrService.success('Proyecto actualizado');
+      },
+      (err) => {
+        this.toastrService.error(err.error.message);
       }
     );
   }

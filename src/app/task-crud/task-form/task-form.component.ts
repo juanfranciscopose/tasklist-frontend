@@ -3,6 +3,7 @@ import { TaskService } from 'src/app/service/task.service';
 import { TaskRequest } from 'src/app/model/task-request';
 import { TokenService } from 'src/app/service/token.service';
 import { UserRequest } from 'src/app/model/user-request';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-task-form',
@@ -18,6 +19,7 @@ export class TaskFormComponent implements OnInit {
   isStoreTaskFail = false;
   errormessage: string;
   constructor(
+    private toastrService: ToastrService,
     private taskService: TaskService,
     private tokenService: TokenService
   ) { }
@@ -41,6 +43,9 @@ export class TaskFormComponent implements OnInit {
         this.status = false;
         this.isStoreTaskFail = false;
         window.location.reload();
+      },
+      (err) => {
+        this.toastrService.error(err.error.message);
       }
     );
   }

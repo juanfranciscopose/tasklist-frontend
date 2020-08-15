@@ -53,8 +53,8 @@ export class LoginFormComponent implements OnInit {
           this.isLogged = false;
           this.isLoginFail = true;
           // fix -> description empty on Exceptions (undefined)
-          this.errormessage = err.error.mesage;
-          console.log(err.error.mesage);
+          this.errormessage = err.error.message;
+          console.log(err);
         }
       );
     }else{
