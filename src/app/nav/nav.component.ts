@@ -6,16 +6,15 @@ import { Router } from '@angular/router';
   selector: 'app-nav',
   templateUrl: './nav.component.html',
   providers: [TokenService],
-  styleUrls: ['./nav.component.css']
+  styleUrls: ['./nav.component.css'],
 })
-export class NavComponent{
-  constructor(
-   public tokenService: TokenService,
-   private router: Router
-  ) {}
-  public onLogout(): void{
+export class NavComponent {
+  constructor(public tokenService: TokenService, private router: Router) {}
+  public isAdmin(): boolean {
+    return this.tokenService.getAuthorities().includes('ROL_ADMIN');
+  }
+  public onLogout(): void {
     this.tokenService.logOut();
     this.router.navigateByUrl('/login');
   }
-
 }
