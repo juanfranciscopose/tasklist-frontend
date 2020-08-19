@@ -24,4 +24,11 @@ export class UserService {
     return this.httpClient.get<TaskRequest[]>(this.urlUser + userId + '/tasks');
   }
 
+  public getAllUsers(): Observable<UserRequest[]> {
+    return this.httpClient.get<UserRequest[]>(this.urlUser);
+  }
+
+  public deleteUser(id: number): Observable<any> {
+    return this.httpClient.delete<any>(this.urlUser + id);
+  }
 }

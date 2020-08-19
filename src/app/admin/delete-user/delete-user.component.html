@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xl-12 d-flex justify-content-center">
+      <h2 class="mt-4">Usuarios del Sistema</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xl-12">
+      <table class="text-center table table-sm mt-4">
+        <thead>
+          <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Email</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let userRequest of this.userRequestList">
+            <td>{{ userRequest.name }}</td>
+            <td>{{ userRequest.surname }}</td>
+            <td>{{ userRequest.email }}</td>
+            <td *ngIf="!this.isAdmin(userRequest)">
+              <a class="text-danger" (click)="deleteUser(userRequest.id)"><i class="far fa-trash-alt"></i></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

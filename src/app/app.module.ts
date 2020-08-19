@@ -18,6 +18,7 @@ import { TableComponent } from './task-crud/table/table.component';
 import { TaskCardComponent } from './task-crud/task-card/task-card.component';
 import { OneTaskCardComponent } from './task-crud/one-task-card/one-task-card.component';
 import { HomeComponent } from './home/home.component';
+import { DeleteUserComponent } from './admin/delete-user/delete-user.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { HomeComponent } from './home/home.component';
     TaskCardComponent,
     OneTaskCardComponent,
     HomeComponent,
+    DeleteUserComponent,
   ],
   imports: [
     BrowserModule,

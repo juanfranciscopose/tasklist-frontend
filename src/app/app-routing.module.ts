@@ -6,6 +6,7 @@ import { OneTaskCardComponent } from './task-crud/one-task-card/one-task-card.co
 import { HomeComponent } from './home/home.component';
 import { TableComponent } from './task-crud/table/table.component';
 import { AuthGuardService as guard } from './guards/auth-guard.service';
+import { DeleteUserComponent } from './admin/delete-user/delete-user.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -30,6 +31,12 @@ const routes: Routes = [
     canActivate: [guard],
     data: { expectedRole: ['admin', 'user'] },
   },
+  {
+    path: 'admin/user/delete',
+    component: DeleteUserComponent,
+    canActivate: [guard],
+    data: { expectedRole: ['admin'] },
+  }
 ];
 
 @NgModule({
