@@ -9,11 +9,11 @@
   <div class="row">
     <div class="col-xl-12">
       <ng-container *ngIf="tasks === null; else table">
-        <h4>No hay oroyectos públicos</h4>
+        <h4>No hay proyectos públicos</h4>
       </ng-container>
 
       <ng-template #table>
-        <table class="table table-hover text-center">
+        <table class="table table-striped text-center table-sm">
           <thead>
             <tr>
               <th scope="col">Autor</th>
@@ -32,14 +32,14 @@
               <td>{{ task.description }}</td>
               <td>{{ task.timeStamp | date }}</td>
               <td>
-                <button
-                  class="btn btn-outline-primary btn-sm"
+                <a
+                  class="text-secondary"
                   (click)="seeToDoList(task.id)"
                   data-toggle="modal"
                   data-target="#toDoList"
                 >
                 <i class="far fa-eye"></i>
-                </button>
+              </a>
               </td>
             </tr>
           </tbody>
@@ -70,11 +70,11 @@
         </div>
         <div class="modal-body">
           <ng-container *ngIf="toDoList === null; else list">
-            <h4>No hay especificaciones</h4>
+            <h5>No hay especificaciones</h5>
           </ng-container>
 
           <ng-template #list>
-            <table class="table table-sm text-center">
+            <table class="table table-sm">
               <tbody>
                 <tr *ngFor="let toDo of toDoList">
                   <td *ngIf="toDo.status; else item">
