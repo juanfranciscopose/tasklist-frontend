@@ -1,5 +1,5 @@
 <ng-container *ngIf="tokenService.getToken(); else notlogged">
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
     <a class="navbar-brand" routerLink="/home">Administrador de Proyectos</a>
     <button
       class="navbar-toggler"
@@ -41,7 +41,7 @@
 </ng-container>
 
 <ng-template #notlogged>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
     <a class="navbar-brand" routerLink="/home">Administrador de Proyectos</a>
     <button
       class="navbar-toggler"
