@@ -1,21 +1,21 @@
 <ng-container *ngIf="tasks === null; else cards">
-  <h4>
+  <h5>
     No hay proyectos
-  </h4>
+  </h5>
 </ng-container>
 
   <ng-template #cards>
     <div class="card-group">
       <div *ngFor="let task of tasks">
-        <a [routerLink]="['/tasks/', task.id]" style="text-decoration: none;">
-          <div class="card bg-light mb-3 mr-2" style="max-width: 16rem;">
-            <div class="card-body">
+        <a [routerLink]="['/tasks/', task.id]" class="text-secondary text-decoration-none">
+          <div class="card bg-light mb-3 mr-2 shadow-sm" style="max-width: 16rem;">
+            <div class="card-footer">
               <h5 class="card-title text-center">{{ task.title | titlecase }}</h5>
               <p *ngIf="task.description" class="card-text">
-                Descripción: {{ task.description }}
+              {{ task.description }}
               </p>
             </div>
-            <div class="card-footer text-muted">
+            <div class="card-body">
               <p *ngIf="task.status; else privado" class="card-text">
                 Estado Público
               </p>
