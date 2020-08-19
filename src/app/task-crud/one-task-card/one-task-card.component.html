@@ -36,7 +36,7 @@
   </nav>
 
   <div class="container d-flex justify-content-center mt-4">
-    <div class="card" style="width: 50rem;">
+    <div class="card shadow" style="width: 50rem;">
       <div class="card-body">
         <ng-container *ngIf="visibleEditfields; else h5">
           <div class="text-center">
@@ -76,13 +76,13 @@
         <ng-template #checkbox>
           <ng-container *ngIf="this.taskRequest.status; else private">
             <p class="card-text">
-              <i class="fas fa-globe-americas"></i> Público
+              <i class="fas fa-globe-americas"></i> <strong> Público</strong>
             </p>
           </ng-container>
 
           <ng-template #private>
             <p class="card-text">
-              <i class="fas fa-globe-americas"></i> Privado
+              <i class="fas fa-globe-americas"></i> <strong> Privado</strong>
             </p>
           </ng-template>
         </ng-template>
