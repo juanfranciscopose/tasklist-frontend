@@ -13,7 +13,7 @@ import { ToastrService } from 'ngx-toastr';
   providedIn: 'root',
 })
 export class AuthGuardService implements CanActivate {
-  realRol: string;
+  realRole: string;
   constructor(private router: Router, private tokenService: TokenService,private toastrService: ToastrService) {}
   // passes only if the required role matches the current one
   public canActivate(
@@ -22,16 +22,16 @@ export class AuthGuardService implements CanActivate {
   ): boolean {
     const expectedRoles: string[] = route.data.expectedRole;
     const roles = this.tokenService.getAuthorities();
-    this.realRol = 'user';
+    this.realRole = 'user';
 
-    roles.forEach((rol) => {
-      if (rol === 'ROL_ADMIN') {
-        this.realRol = 'admin';
+    roles.forEach((role) => {
+      if (role === 'ROLE_ADMIN') {
+        this.realRole = 'admin';
       }
     });
 
     if (
-      expectedRoles.indexOf(this.realRol) === -1 ||
+      expectedRoles.indexOf(this.realRole) === -1 ||
       !this.tokenService.getToken()
     ) {
       this.toastrService.error('usted no tiene permiso para ir a esa url');

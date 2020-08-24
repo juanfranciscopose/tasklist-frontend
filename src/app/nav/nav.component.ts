@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class NavComponent {
   constructor(public tokenService: TokenService, private router: Router) {}
   public isAdmin(): boolean {
-    return this.tokenService.getAuthorities().includes('ROL_ADMIN');
+    return this.tokenService.getAuthorities().includes('ROLE_ADMIN');
   }
   public onLogout(): void {
     this.tokenService.logOut();

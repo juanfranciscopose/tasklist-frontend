@@ -5,5 +5,5 @@ export class UserRequest {
   email: string;
   password: string;
   telephone?: number;
-  rols: string[];
+  roles: string[];
 }
